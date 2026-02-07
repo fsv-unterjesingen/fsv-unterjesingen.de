@@ -20,6 +20,14 @@ body {
   font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
   color: var(--ink);
   background: var(--sand);
+  /* Needed to align the footer with the bottom of the page, even if the page doesn't take up 100vh. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 img {
@@ -29,6 +37,11 @@ img {
 
 a {
   color: inherit;
+}
+
+header a,
+.ghost-button,
+.cta-button {
   text-decoration: none;
 }
 
@@ -517,20 +530,29 @@ main.has-fixed-header {
 .site-footer {
   background: var(--blue-dark);
   color: var(--white);
-  padding: 50px 0 24px;
+  padding-top: 10px;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-}
-
-.footer-base {
-  margin-top: 30px;
+.site-footer .footer-row {
   text-align: center;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.social-icons svg {
+  width: 35px;
+  height: 35px;
 }
 
 .page-hero {
@@ -553,7 +575,6 @@ main.has-fixed-header {
 
 .page-body {
   padding: 40px 0 70px;
-  background: var(--white);
 }
 
 .content {
