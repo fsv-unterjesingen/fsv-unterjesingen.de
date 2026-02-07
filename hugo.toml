@@ -14,20 +14,20 @@ ctaLink = '/kontakt/'
     url = '/'
     weight = 1
   [[menu.main]]
-    name = 'Verein'
-    url = '/verein/'
+    name = 'Fliegen lernen'
+    url = '/fliegen-lernen/'
     weight = 2
   [[menu.main]]
-    name = 'Flugplatz'
-    url = '/flugplatz/'
+    name = 'Verein'
+    url = '/verein/'
     weight = 3
   [[menu.main]]
-    name = 'Segelfliegen'
-    url = '/segelfliegen/'
+    name = 'Streckenflug'
+    url = '/streckenflug/'
     weight = 4
   [[menu.main]]
-    name = 'Ausbildung'
-    url = '/ausbildung/'
+    name = 'FAQ'
+    url = '/faq/'
     weight = 5
   [[menu.main]]
     name = 'Kontakt'
