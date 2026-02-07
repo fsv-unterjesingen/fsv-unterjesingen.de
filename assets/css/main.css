@@ -33,7 +33,7 @@ a {
 }
 
 .container {
-  width: min(1160px, 90vw);
+  width: min(1160px, calc(100% - 40px));
   margin: 0 auto;
 }
 
@@ -57,7 +57,7 @@ main.has-fixed-header {
   grid-template-columns: auto 1fr auto;
   gap: 24px;
   align-items: center;
-  padding: 7px 0;
+  padding: 4px 0;
   transition: padding 0.25s ease;
 }
 
@@ -71,23 +71,22 @@ main.has-fixed-header {
   align-items: center;
   gap: 12px;
   width: 280px;
-  height: 80px;
+  height: 72px;
   transform-origin: left center;
-  transition: none;
+  transition: height 0.25s ease;
 }
 
 .brand-lockup img {
   height: 100%;
+  width: auto;
   flex: 0 0 auto;
-  transform-origin: left center;
-  transition: transform 0.25s ease;
 }
 
 .brand-title {
   font-family: "Fraunces", "Times New Roman", serif;
   font-size: 1.05rem;
   font-weight: 600;
-  color: #f3fbfd;
+  color: #fff;
 }
 
 .site-header.is-scrolled {
@@ -95,16 +94,24 @@ main.has-fixed-header {
 }
 
 .site-header.is-scrolled .header-row {
-  padding: 0;
+  padding: 4px 0;
 }
 
-.site-header.is-scrolled .brand-lockup img {
-  transform: scale(0.72);
+.site-header.is-scrolled .brand-lockup {
+  height: 52px;
 }
 
 .brand-sub {
   font-size: 0.9rem;
   color: rgba(243, 251, 253, 0.75);
+  transition: opacity 0.25s ease, max-height 0.25s ease, transform 0.25s ease;
+  max-height: 1.2em;
+}
+
+.site-header.is-scrolled .brand-sub {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-4px);
 }
 
 .main-nav ul {
@@ -114,14 +121,16 @@ main.has-fixed-header {
   padding: 0;
   margin: 0;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .main-nav a {
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #f3fbfd;
+  color: #fff;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .nav-toggle {
@@ -241,7 +250,7 @@ main.has-fixed-header {
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -541,12 +550,6 @@ main.has-fixed-header {
 
   .footer-base {
     color: rgba(234, 245, 247, 0.7);
-  }
-}
-
-@media (max-width: 1250px) {
-  .site-header .cta-button {
-    display: none;
   }
 }
 
