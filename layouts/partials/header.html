@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="container header-row">
+    <a class="brand" href="/">
+      <div class="brand-lockup">
+        <img src="/images/logo.png" alt="FSV Unterjesingen Logo" />
+        <div>
+          <div class="brand-title">{{ .Site.Params.clubName }}</div>
+          <div class="brand-sub">Segelflugplatz Poltringen</div>
+        </div>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <button class="nav-toggle" aria-label="Menü öffnen" onclick="document.body.classList.toggle('nav-open')">Menü</button>
+      <ul>
+        {{ range .Site.Menus.main }}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+    <a class="cta-button" href="{{ .Site.Params.ctaLink }}">{{ .Site.Params.ctaText }}</a>
+  </div>
+</header>

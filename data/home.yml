@@ -1,0 +1,45 @@
+hero:
+  title: "Willkommen beim FSV Unterjesingen"
+  subtitle: "Zwischen Schönbuch und Ammer – Segelflugtradition seit 1952"
+  slides:
+    - image: "/images/hero-1.jpg"
+      alt: "Segelflugzeug im Flug"
+    - image: "/images/hero-2.jpg"
+      alt: "Segelflugplatz Poltringen"
+    - image: "/images/hero-3.jpg"
+      alt: "Cockpit im Flug"
+    - image: "/images/hero-4.jpg"
+      alt: "Startwinde am Platz"
+
+highlights:
+  - title: "Schnupperflug"
+    text: "Erlebe die Welt aus der Thermik. Termine nach Absprache, auch für Gruppen."
+    link: "/kontakt/"
+  - title: "Segelflugausbildung"
+    text: "Vom ersten Start bis zur Lizenz – wir bilden im Verein aus, praxisnah und familiär."
+    link: "/ausbildung/"
+  - title: "Unser Flugplatz"
+    text: "Graspiste, Winde und Schlepp. Nur 10 Minuten von Tübingen entfernt."
+    link: "/flugplatz/"
+
+about:
+  title: "Flugsport mit Herz und Handwerk"
+  text: "Der FSV Unterjesingen ist ein engagierter Verein mit aktiven Pilotinnen und Piloten, Nachwuchsarbeit und technischen Werkstätten. Wir fliegen Segelflugzeuge, Motorsegler und pflegen eine Gemeinschaft, die Menschen zusammenbringt."
+  badge: "/images/badge.png"
+
+news:
+  - date: "2025-09-14"
+    title: "Streckenfluglehrgang am Schönbuch"
+    text: "Thermik lesen, Wellen nutzen, Strecken planen: ein intensives Wochenende für Fortgeschrittene."
+  - date: "2025-07-05"
+    title: "Sommerfest am Flugplatz"
+    text: "Flugbetrieb, Grillen und Hangarführung – wir freuen uns auf Gäste und Freunde des Vereins."
+  - date: "2025-04-20"
+    title: "Ausbildung startet in die Saison"
+    text: "Unsere Flugschülerinnen und Flugschüler heben wieder ab – mit neuen Theoriemodulen."
+
+cta:
+  title: "Lust auf Segelflug?"
+  text: "Wir zeigen dir den Einstieg, begleiten dich in der Ausbildung und öffnen die Tür zum Vereinsleben."
+  button: "Kontakt aufnehmen"
+  link: "/kontakt/"
