@@ -153,13 +153,6 @@ main.has-fixed-header {
   text-decoration-thickness: 2px;
 }
 
-.main-nav {
-  align-self: stretch;
-  display: flex;
-  align-items: stretch;
-  height: 100%;
-}
-
 .main-nav li {
   position: relative;
   display: flex;
