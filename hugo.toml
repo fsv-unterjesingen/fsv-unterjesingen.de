@@ -8,28 +8,45 @@ tagline = 'Segelflug, Motorsegler und Gemeinschaft am Schönbuchrand'
 ctaText = 'Mitfliegen & Mitglied werden'
 ctaLink = '/kontakt/'
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [menu]
   [[menu.main]]
     name = 'Start'
-    url = '/'
+    pageRef = '/'
+    weight = 1
+  [[menu.main]]
+    name = 'Segelflug'
+    url = '#'
+    identifier = 'segelflug'
+    weight = 2
+  [[menu.main]]
+    name = 'Allgemeines'
+    pageRef = '/segelflug'
+    parent = 'segelflug'
     weight = 1
   [[menu.main]]
     name = 'Fliegen lernen'
-    url = '/fliegen-lernen/'
+    pageRef = '/fliegen-lernen'
+    parent = 'segelflug'
     weight = 2
   [[menu.main]]
-    name = 'Verein'
-    url = '/verein/'
+    name = 'Streckenflug'
+    pageRef = '/streckenflug'
+    parent = 'segelflug'
     weight = 3
   [[menu.main]]
-    name = 'Streckenflug'
-    url = '/streckenflug/'
+    name = 'Verein'
+    pageRef = '/verein'
     weight = 4
   [[menu.main]]
     name = 'FAQ'
-    url = '/faq/'
+    pageRef = '/faq'
     weight = 5
   [[menu.main]]
     name = 'Kontakt'
-    url = '/kontakt/'
+    pageRef = '/kontakt'
     weight = 6
