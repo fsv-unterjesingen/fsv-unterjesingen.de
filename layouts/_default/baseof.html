@@ -35,24 +35,39 @@
       (function () {
         var nav = document.querySelector(".main-nav");
         if (!nav) return;
-        var parents = nav.querySelectorAll("li.has-children > a");
         var closeAll = function () {
           nav.querySelectorAll("li.has-children.is-open").forEach(function (li) {
             li.classList.remove("is-open");
+            var link = li.querySelector("a[data-menu-parent]");
+            if (link) link.setAttribute("aria-expanded", "false");
           });
         };
-        parents.forEach(function (link) {
-          link.addEventListener("click", function (event) {
-            event.preventDefault();
-            var li = link.parentElement;
-            var isOpen = li.classList.contains("is-open");
-            closeAll();
-            if (!isOpen) li.classList.add("is-open");
-          });
-        });
-        document.addEventListener("click", function (event) {
-          if (!nav.contains(event.target)) closeAll();
-        });
+        window.fsvToggleMenu = function (event, link) {
+          if (!link || !link.closest("li.has-children")) return false;
+          event.preventDefault();
+          event.stopPropagation();
+          var li = link.closest("li.has-children");
+          var isOpen = li.classList.contains("is-open");
+          closeAll();
+          if (!isOpen) {
+            li.classList.add("is-open");
+            link.setAttribute("aria-expanded", "true");
+          }
+          return false;
+        };
+        // Capture clicks on menu parents to ensure reliable toggling on mobile.
+        document.addEventListener(
+          "click",
+          function (event) {
+            var link = event.target.closest("a[data-menu-parent]");
+            if (!link) {
+              if (!nav.contains(event.target)) closeAll();
+              return;
+            }
+            window.fsvToggleMenu(event, link);
+          },
+          true
+        );
       })();
     </script>
   </body>
