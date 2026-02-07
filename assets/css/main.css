@@ -685,6 +685,7 @@ main.has-fixed-header {
   .site-header {
     --header-bg: rgba(100, 100, 100, 0.6);
     --header-backdrop-filter: blur(6px) brightness(0.8);
+    box-shadow: none;
   }
 
   .main-nav a {
