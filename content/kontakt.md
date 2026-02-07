@@ -3,14 +3,10 @@ title: "Kontakt"
 lead: "Sprich uns an – wir freuen uns auf deinen Besuch am Flugplatz."
 ---
 
-**E-Mail**
+Schreib uns gerne eine E-Mail an [info@fsv-unterjesingen.de](mailto:info@fsv-unterjesingen.de), wenn du einen Schnupperflug oder einen Besuch am Flugplatz planst.
 
-info@fsv-unterjesingen.de
+### Adresse
 
-**Adresse**
-
-Rottenburgerstraße 54, 72070 Unterjesingen
-
-**Kontaktaufnahme**
-
-Schreib uns gerne, wenn du einen Schnupperflug oder einen Besuch am Flugplatz planst.
+FSV Unterjesingen e.V.<br>
+Rottenburgerstraße 54<br>
+72070 Unterjesingen
