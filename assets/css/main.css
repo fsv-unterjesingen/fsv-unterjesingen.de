@@ -679,7 +679,7 @@ main.has-fixed-header {
   }
 
   body {
-    background: #0b1416;
+    background: #0f1d22;
   }
 
   .site-header {
@@ -720,8 +720,7 @@ main.has-fixed-header {
   }
 
   .highlights,
-  -actions .news,
-  .page-body {
+  -actions .news {
     background: #0f1d22;
   }
 
