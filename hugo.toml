@@ -25,19 +25,24 @@ ctaLink = '/kontakt/'
     weight = 2
   [[menu.main]]
     name = 'Allgemeines'
-    pageRef = '/segelflug'
+    pageRef = '/segelflug/allgemeines'
     parent = 'segelflug'
     weight = 1
   [[menu.main]]
     name = 'Fliegen lernen'
-    pageRef = '/fliegen-lernen'
+    pageRef = '/segelflug/fliegen-lernen'
     parent = 'segelflug'
     weight = 2
   [[menu.main]]
     name = 'Streckenflug'
-    pageRef = '/streckenflug'
+    pageRef = '/segelflug/streckenflug'
     parent = 'segelflug'
     weight = 3
+  [[menu.main]]
+    name = 'Alpensegelflug'
+    pageRef = '/segelflug/alpensegelflug'
+    parent = 'segelflug'
+    weight = 4
   [[menu.main]]
     name = 'Verein'
     pageRef = '/verein'
