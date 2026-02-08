@@ -588,6 +588,25 @@ main.has-fixed-header {
   margin-top: 28px;
 }
 
+.content dl {
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 50px;
+  row-gap: 8px;
+}
+
+.content dt {
+  font-weight: 600;
+  margin: 0;
+  grid-column: 1;
+}
+
+.content dd {
+  margin: 0;
+  grid-column: 2;
+}
+
 .subnav {
   display: flex;
   flex-wrap: wrap;
