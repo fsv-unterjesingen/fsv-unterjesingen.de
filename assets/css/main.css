@@ -16,6 +16,7 @@
 }
 
 body {
+  --header-height: 72px;
   margin: 0;
   font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
   color: var(--ink);
@@ -53,7 +54,6 @@ header a,
 .site-header {
   --header-bg: rgba(0, 0, 0, 0.6);
   --header-backdrop-filter: blur(6px);
-  --header-height: 72px;
   --transition-period: 0.25s;
   height: var(--header-height);
   transition: height var(--transition-period) ease;
@@ -112,7 +112,7 @@ header a,
   color: #fff;
 }
 
-.site-header.is-scrolled {
+body:has(.site-header.is-scrolled) {
   --header-height: 56px;
 }
 
@@ -553,8 +553,8 @@ header a,
 }
 
 .page-hero {
-  margin-top: -72px;
-  padding: calc(min(150px, 25vh) + 72px) 0 30px;
+  margin-top: calc(-1 * var(--header-height));
+  padding: calc(min(150px, 13vh) + 72px) 0 30px;
   background-color: #365a9d45;
 }
 
