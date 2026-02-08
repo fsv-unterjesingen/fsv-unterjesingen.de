@@ -55,8 +55,8 @@ main.has-fixed-header {
 }
 
 .site-header {
-  --header-bg: rgba(50, 50, 50, 0.45);
-  --header-backdrop-filter: blur(6px) brightness(0.65);
+  --header-bg: rgba(0, 0, 0, 0.6);
+  --header-backdrop-filter: blur(6px);
   --header-height: 72px;
   --transition-period: 0.25s;
   height: var(--header-height);
@@ -701,8 +701,7 @@ main.has-fixed-header {
   }
 
   .site-header {
-    --header-bg: rgba(100, 100, 100, 0.6);
-    --header-backdrop-filter: blur(6px) brightness(0.8);
+    --header-bg: rgba(106, 97, 86, 0.68);
     box-shadow: none;
   }
 
