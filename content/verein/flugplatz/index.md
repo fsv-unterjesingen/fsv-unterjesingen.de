@@ -15,7 +15,7 @@ Mit dem Motorflugzeug oder Motorsegler kannst du uns jedoch leider nicht besuche
 
 Wenn du den Flugplatz mit dem Auto, zu Fuß oder mit dem Fahrrad – die Radwege rundum sind hervorragend – besuchen willst, findest du uns am nördlichen Ortsrand von Poltringen, oberhalb des Reitsportgeländes und der Tennisplätze.
 
-Im [Goldenen Propeller](https://www.restaurant-goldener-propeller.de/) wird für das leibliche Wohl gesorgt wird – bei schönem Wetter ist schon allein die Gartenterrasse einen Besuch wert –, und ein großer Kinderspielplatz sorgen für einen angenehmen Aufenthalt.
+Im [Goldenen Propeller](https://www.restaurant-goldener-propeller.de/) wird für das leibliche Wohl gesorgt wird – bei schönem Wetter ist schon allein die Gartenterrasse einen Besuch wert –, und ein großer Kinderspielplatz sorgen für einen angenehmen Aufenthalt. Unten findest du eine Karte des Fluggeländes.
 
 Wir freuen uns auf deinen Besuch! **Bitte achte auf anfliegende Flugzeuge!**
 
@@ -36,3 +36,13 @@ Start-/Landebahnen
 
 Länge / Belag
 : 400 m Asphalt; Gras für Segelflugzeuge
+
+{{< poi-map
+  id="places-map"
+  zoom="14"
+  points=`[
+    {"lat":48.54370,"lon":8.94492,"title":"Flugzeughallen, Restaurant, Parkmöglichkeiten, Spielplatz"},
+    {"lat":48.54366,"lon":8.94855,"title":"Segelflugstart Süd"},
+    {"lat":48.55115,"lon":8.94581,"title":"Segelflugstart Nord"}
+  ]`
+>}}
