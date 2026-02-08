@@ -1,7 +1,6 @@
 ---
 title: "Flugplatz Poltringen"
 aliases:
-  - /startseite/der-verein/flugplatz-poltringen/
   - /startseite/der-verein/flugplatz-poltringen
 hero_image:
   url: "poltringen.jpg"

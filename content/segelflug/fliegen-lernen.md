@@ -1,5 +1,7 @@
 ---
 title: "Fliegen lernen"
+aliases:
+  - /startseite/fliegen-lernen-2/wie-werde-ich-pilot
 ---
 
 ## Ausbildung
