@@ -19,6 +19,8 @@ Der FSV Unterjesingen ist ein zertifizierter Segelflug-Ausbildungsbetrieb und bi
 
 ### Allgemeine Infos
 
+{{< youtube D3-s7hWb6rA >}}
+
 - gesamte Ausbildungsdauer: etwa **2 Jahre**
 - Ausbildungsdauer bis zum Alleinflug: etwa **70**-90 Starts (entspricht etwa einer Saison)
 - Mindestalter für Ausbildungsbeginn: **14 Jahre** (mit Sondergenehmigung auch vorher, nach oben lediglich begrenzt durch die Flugtauglichkeit)
