@@ -792,19 +792,11 @@ body:has(.site-header.is-scrolled) {
 
   .site-footer {
     background: #050f12;
-    color: #eaf5f7;
+    color: #b1bbbd;
   }
 
   .site-footer h4 {
     color: #ffffff;
-  }
-
-  .site-footer p {
-    color: rgba(234, 245, 247, 0.82);
-  }
-
-  .footer-base {
-    color: rgba(234, 245, 247, 0.7);
   }
 }
 
