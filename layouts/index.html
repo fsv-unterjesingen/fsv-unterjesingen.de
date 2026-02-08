@@ -13,25 +13,31 @@
       <p class="hero-subtitle">{{ $home.hero.subtitle }}</p>
       <div class="hero-actions">
         <a class="cta-button" href="{{ .Site.Params.ctaLink }}">{{ .Site.Params.ctaText }}</a>
-        <a class="ghost-button" href="/segelfliegen/">Mehr über Segelflug</a>
+        <a class="ghost-button" href="/segelflug/allgemeines">Mehr über Segelflug</a>
       </div>
     </div>
     <!-- hero-card removed as requested -->
   </div>
 </section>
 
-<section class="highlights">
+<section class="page-body">
+  <div class="container content">
+    {{ .Content }}
+  </div>
+</section>
+
+<section class="news">
   <div class="container">
     <div class="section-title">
-      <h2>Erlebnis, Ausbildung, Gemeinschaft</h2>
-      <p>Alles am Platz: von der Thermikschulung bis zum Hangarabend.</p>
+      <h2>Aktuelles</h2>
+      <p>Neuigkeiten aus dem Verein und vom Flugplatz. TBD</p>
     </div>
-    <div class="card-grid">
-      {{ range $home.highlights }}
-      <article class="info-card">
+    <div class="news-list">
+      {{ range $home.news }}
+      <article class="news-item">
+        <div class="news-date">{{ .date }}</div>
         <h3>{{ .title }}</h3>
         <p>{{ .text }}</p>
-        <a href="{{ .link }}">Mehr erfahren</a>
       </article>
       {{ end }}
     </div>
@@ -49,44 +55,4 @@
   </div>
 </section>
 
-<section class="about">
-  <div class="container about-grid">
-    <div>
-      <h2>{{ $home.about.title }}</h2>
-      <p>{{ $home.about.text }}</p>
-      <p class="muted">Wir freuen uns auf Interessierte, Schnuppergäste und neue Mitglieder.</p>
-    </div>
-    <div class="about-badge">
-      <img src="{{ $home.about.badge }}" alt="Segelfliegen macht glücklich" />
-    </div>
-  </div>
-</section>
-
-<section class="news">
-  <div class="container">
-    <div class="section-title">
-      <h2>Aktuelles</h2>
-      <p>Neuigkeiten aus dem Verein und vom Flugplatz.</p>
-    </div>
-    <div class="news-list">
-      {{ range $home.news }}
-      <article class="news-item">
-        <div class="news-date">{{ .date }}</div>
-        <h3>{{ .title }}</h3>
-        <p>{{ .text }}</p>
-      </article>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
-<section class="cta">
-  <div class="container cta-box">
-    <div>
-      <h2>{{ $home.cta.title }}</h2>
-      <p>{{ $home.cta.text }}</p>
-    </div>
-    <a class="cta-button dark" href="{{ $home.cta.link }}">{{ $home.cta.button }}</a>
-  </div>
-</section>
 {{ end }}
