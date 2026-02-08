@@ -1,5 +1,6 @@
 {{ define "main" }}
-<section class="page-hero">
+{{ $hero := partial "funcs/hero-image.html" . }}
+<section class="page-hero{{ if $hero.url }} has-hero-image{{ end }}"{{ with $hero.url }} style="background-image: {{ $hero.overlay }}, url('{{ . | safeURL }}');"{{ end }}>
   <div class="container">
     <h1>{{ .Title }}</h1>
     {{ with .Params.lead }}<p class="page-lead">{{ . }}</p>{{ end }}

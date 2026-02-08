@@ -50,10 +50,6 @@ header a,
   margin: 0 auto;
 }
 
-main.has-fixed-header {
-  padding-top: 72px;
-}
-
 .site-header {
   --header-bg: rgba(0, 0, 0, 0.6);
   --header-backdrop-filter: blur(6px);
@@ -556,8 +552,15 @@ main.has-fixed-header {
 }
 
 .page-hero {
-  padding: 70px 0 30px;
-  background: linear-gradient(120deg, rgba(14, 93, 120, 0.14), rgba(47, 124, 63, 0.18));
+  margin-top: -72px;
+  padding: calc(min(150px, 25vh) + 72px) 0 30px;
+  background-color: #365a9d45;
+}
+
+.page-hero.has-hero-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .page-hero h1 {
@@ -565,6 +568,12 @@ main.has-fixed-header {
   font-size: 2.4rem;
   margin-bottom: 8px;
   text-align: center;
+}
+
+.page-hero.has-hero-image h1 {
+  color: white;
+  text-shadow:
+    0.1em 0.1em 0.3em black;
 }
 
 .page-lead {

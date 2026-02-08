@@ -1,0 +1,24 @@
+{{- $heroParam := .Params.hero_image -}}
+{{- $heroUrl := "" -}}
+{{- $heroBrightness := 0.8 -}}
+{{- if $heroParam -}}
+  {{- if reflect.IsMap $heroParam -}}
+    {{- $heroUrl = $heroParam.url | default "" -}}
+    {{- $heroBrightness = $heroParam.brightness | default 0.8 -}}
+  {{- else -}}
+    {{- $heroUrl = $heroParam -}}
+  {{- end -}}
+{{- end -}}
+{{- if $heroUrl -}}
+  {{- $isAbsolute := or (strings.HasPrefix $heroUrl "/") (strings.HasPrefix $heroUrl "http") -}}
+  {{- if not $isAbsolute -}}
+    {{- with .Resources.GetMatch $heroUrl -}}
+      {{- $heroUrl = .RelPermalink -}}
+    {{- else -}}
+      {{- $heroUrl = (path.Join .RelPermalink $heroUrl) | relURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $heroOverlayAlpha := sub 1 $heroBrightness -}}
+{{- $heroOverlay := printf "linear-gradient(rgba(0,0,0,%.2f), rgba(0,0,0,%.2f))" $heroOverlayAlpha $heroOverlayAlpha | safeCSS -}}
+{{- return (dict "url" $heroUrl "overlay" $heroOverlay) -}}
