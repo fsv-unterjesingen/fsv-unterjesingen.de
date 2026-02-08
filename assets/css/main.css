@@ -552,6 +552,22 @@ body:has(.site-header.is-scrolled) {
   height: 35px;
 }
 
+.maplibregl-ctrl-group {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+
+.maplibregl-popup-content {
+  color: #1a1a1a !important;
+  font-size: 0.9rem !important;
+  padding-top: 8px 10px !important;
+  text-align: center !important;
+  hyphens: auto !important;
+  max-width: 260px !important;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.58) !important;
+  border-radius: 10px !important;
+}
+
 .page-hero {
   margin-top: calc(-1 * var(--header-height));
   padding: calc(min(150px, 13vh) + 72px) 0 30px;
