@@ -1,0 +1,158 @@
+{{- $id := .Get "id" | default "openaip-map" -}}
+{{- $lat := .Get "lat" | default "48.546944" -}}
+{{- $lon := .Get "lon" | default "8.946111" -}}
+{{- $zoom := .Get "zoom" | default "11.2" -}}
+{{- $apiKey := .Site.Params.openaipApiKey | default "" -}}
+{{- $tileUrl := "https://api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.pbf" -}}
+{{- if $apiKey -}}
+{{- $tileUrl = printf "%s?apiKey=%s" $tileUrl $apiKey -}}
+{{- end -}}
+{{- $icons := newScratch -}}
+{{- $icons.Set "list" (slice) -}}
+{{- range (readDir "static/openaip/svg") -}}
+{{- if and (not .IsDir) (hasSuffix .Name ".svg") -}}
+{{- $name := replace .Name ".svg" "" | strings.TrimSpace -}}
+{{- if ne $name "" -}}
+{{- $icons.Set "list" ($icons.Get "list" | append $name) -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- $iconList := $icons.Get "list" -}}
+
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.17.0/dist/maplibre-gl.css" />
+<div class="map-widget" id="{{ $id }}" data-map-ready="false"></div>
+<script src="https://unpkg.com/maplibre-gl@5.17.0/dist/maplibre-gl.js"></script>
+<script>
+  (() => {
+    const container = document.getElementById("{{ $id }}");
+    if (!container || container.dataset.mapReady === "true") return;
+    container.dataset.mapReady = "true";
+
+    const map = new maplibregl.Map({
+      container: "{{ $id }}",
+      // OpenMapTiles OSM style via TrailStash (no API key required).
+      style: "https://styles.trailsta.sh/openmaptiles-osm.json",
+      center: [{{$lon}}, {{$lat}}],
+  zoom: {{$zoom}},
+  attributionControl: true
+  });
+
+  map.addControl(new maplibregl.NavigationControl({showCompass: false}), "top-right");
+
+  const missingIcons = new Set();
+  const loadingIcons = new Set();
+  const transparentCanvas = document.createElement("canvas");
+  transparentCanvas.width = 1;
+  transparentCanvas.height = 1;
+  const addTransparentIcon = (name) => {
+    if (!name || map.hasImage(name)) return;
+    try {
+      map.addImage(name, transparentCanvas, {pixelRatio: 1});
+    } catch (e) {
+      // ignore duplicate
+    }
+  };
+  const iconBase = "/openaip/svg/";
+  const isPatternIcon = (name) => name.startsWith("diagonal_lines_");
+  const isRoseIcon = (name) => name.startsWith("navaid_rose");
+  const loadSvgIcon = (name) => new Promise((resolve) => {
+    if (!name || missingIcons.has(name) || loadingIcons.has(name)) {
+      resolve();
+      return;
+    }
+    if (map.hasImage(name)) {
+      resolve();
+      return;
+    }
+    loadingIcons.add(name);
+    const url = `${window.location.origin}${iconBase}${name}.svg`;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        if (!map.hasImage(name)) {
+          if (isRoseIcon(name)) {
+            map.addImage(name, img, {sdf: false, pixelRatio: 2});
+          } else {
+            map.addImage(name, img, {sdf: !isPatternIcon(name)});
+          }
+        }
+      } catch (e) {
+        missingIcons.add(name);
+      } finally {
+        loadingIcons.delete(name);
+        resolve();
+      }
+    };
+    img.onerror = () => {
+      missingIcons.add(name);
+      loadingIcons.delete(name);
+      resolve();
+    };
+    img.src = url;
+  });
+
+  map.on("styleimagemissing", (e) => {
+    const rawName = e.id;
+    if (!rawName) return;
+    const name = String(rawName).trim();
+    if (!name) {
+      addTransparentIcon(String(rawName));
+      return;
+    }
+    addTransparentIcon(name);
+    loadSvgIcon(name);
+  });
+
+  map.on("load", () => {
+    addTransparentIcon(" ");
+    let iconNames = {{ $iconList | jsonify | safeJS }};
+    if (typeof iconNames === "string") {
+      try {
+        iconNames = JSON.parse(iconNames);
+      } catch (e) {
+        iconNames = [];
+      }
+    }
+    if (!Array.isArray(iconNames)) {
+      iconNames = Object.values(iconNames || {});
+    }
+    const loadIcons = iconNames.map((name) => loadSvgIcon(String(name).trim()));
+
+  map.addSource("openaip-data", {
+    type: "vector",
+    tiles: ["{{ $tileUrl }}"],
+    attribution: "OpenAIP"
+  });
+  map.addSource("point-features", {
+    type: "geojson",
+    data: {type: "FeatureCollection", features: []}
+  });
+  map.addSource("polygon-features", {
+    type: "geojson",
+    data: {type: "FeatureCollection", features: []}
+  });
+  map.addSource("adhoc-polygon-features", {
+    type: "geojson",
+    data: {type: "FeatureCollection", features: []}
+  });
+
+  const openAipLayers = {{ (readFile "static/openaip/layers.json") | safeJS }};
+
+    Promise.all(loadIcons).then(() => {
+      const fontFallback = ["Open Sans Regular", "Arial Unicode MS Regular"];
+      openAipLayers.forEach((layer) => {
+        if (layer.id && map.getLayer(layer.id)) return;
+        if (layer.layout && layer.layout["text-font"]) {
+          layer.layout["text-font"] = fontFallback;
+        }
+        map.addLayer(layer);
+      });
+
+      new maplibregl.Marker({color: "#1d6ee8"})
+        .setLngLat([{{ $lon }}, {{ $lat }}])
+        .addTo(map);
+    });
+  });
+}) ();
+</script>

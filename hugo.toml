@@ -7,6 +7,7 @@ clubName = 'Flugsportverein Unterjesingen e.V.'
 tagline = 'Segelflug, Motorsegler und Gemeinschaft am Schönbuchrand'
 ctaText = 'Mitfliegen & Mitglied werden'
 ctaLink = '/kontakt/'
+openaipApiKey = 'bf2df3ae9c5c969fe269d1418df194f2'
 
 [markup]
   [markup.goldmark]
