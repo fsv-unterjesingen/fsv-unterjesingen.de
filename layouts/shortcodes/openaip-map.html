@@ -1,7 +1,7 @@
 {{- $id := .Get "id" | default "openaip-map" -}}
 {{- $lat := .Get "lat" | default "48.546944" -}}
 {{- $lon := .Get "lon" | default "8.946111" -}}
-{{- $zoom := .Get "zoom" | default "11.2" -}}
+{{- $zoom := .Get "zoom" | default "9" -}}
 {{- $apiKey := .Site.Params.openaipApiKey | default "" -}}
 {{- $tileUrl := "https://api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.pbf" -}}
 {{- if $apiKey -}}
