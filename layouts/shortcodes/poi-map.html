@@ -1,0 +1,90 @@
+{{- $id := .Get "id" | default "poi-map" -}}
+{{- $zoom := .Get "zoom" | default "12" -}}
+{{- $lightStyle := .Get "style" | default "https://styles.trailsta.sh/openmaptiles-osm.json" -}}
+{{- $pointsParam := .Get "points" -}}
+{{- $pointsJson := "[]" -}}
+{{- if $pointsParam -}}
+  {{- if reflect.IsSlice $pointsParam -}}
+    {{- $pointsJson = $pointsParam | jsonify | safeJS -}}
+  {{- else if reflect.IsMap $pointsParam -}}
+    {{- $pointsJson = (slice $pointsParam) | jsonify | safeJS -}}
+  {{- else -}}
+    {{- $pointsJson = $pointsParam | safeJS -}}
+  {{- end -}}
+{{- end -}}
+
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.17.0/dist/maplibre-gl.css" />
+<div class="map-widget" id="{{ $id }}" data-map-ready="false"></div>
+<script src="https://unpkg.com/maplibre-gl@5.17.0/dist/maplibre-gl.js"></script>
+<script>
+  (() => {
+    const container = document.getElementById("{{ $id }}");
+    if (!container || container.dataset.mapReady === "true") return;
+    container.dataset.mapReady = "true";
+
+    const points = {{ $pointsJson }};
+    const initialCenter = Array.isArray(points) && points.length
+      ? [points[0].lon, points[0].lat]
+      : [0, 0];
+
+    const styleUrl = "{{ $lightStyle }}";
+
+    const map = new maplibregl.Map({
+      container: "{{ $id }}",
+      style: styleUrl,
+      center: initialCenter,
+      zoom: {{ $zoom }},
+      attributionControl: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl({showCompass: false}), "top-right");
+
+    map.on("load", () => {
+      if (!Array.isArray(points) || points.length === 0) return;
+      const bounds = new maplibregl.LngLatBounds();
+      let activePopup = null;
+      points.forEach((point) => {
+        const marker = new maplibregl.Marker({color: "#d93025"})
+          .setLngLat([point.lon, point.lat]);
+        if (point.title) {
+          const popup = new maplibregl.Popup({
+            offset: 12,
+            closeButton: false,
+            closeOnClick: false
+          }).setText(point.title);
+          const el = marker.getElement();
+          const hitbox = document.createElement("span");
+          hitbox.style.position = "absolute";
+          hitbox.style.top = "-20px";
+          hitbox.style.bottom = "-12px";
+          hitbox.style.left = "-20px";
+          hitbox.style.right = "-20px";
+          hitbox.style.background = "transparent";
+          hitbox.style.pointerEvents = "auto";
+          el.appendChild(hitbox);
+          hitbox.addEventListener("mouseenter", () => {
+            if (activePopup && activePopup !== popup) {
+              activePopup.remove();
+            }
+            popup.addTo(map).setLngLat([point.lon, point.lat]);
+            activePopup = popup;
+          });
+          hitbox.addEventListener("click", () => {
+            if (activePopup && activePopup !== popup) {
+              activePopup.remove();
+            }
+            popup.addTo(map).setLngLat([point.lon, point.lat]);
+            activePopup = popup;
+          });
+        }
+        marker.addTo(map);
+        bounds.extend([point.lon, point.lat]);
+      });
+      if (points.length > 1) {
+        map.fitBounds(bounds, {padding: 40, maxZoom: {{ $zoom }}});
+      }
+    });
+
+    // Light mode only; no color-scheme listeners.
+  })();
+</script>
